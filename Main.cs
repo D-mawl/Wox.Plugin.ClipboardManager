@@ -10,7 +10,7 @@ namespace Wox.Plugin.Clipboard
 {
     public class Main : IPlugin
     {
-        private const int MaxDataCount = 300;
+        private const int MaxDataCount = 50;
         private readonly KeyboardSimulator keyboardSimulator = new KeyboardSimulator(new InputSimulator());
         private PluginInitContext context;
         List<string> dataList = new List<string>();
@@ -48,7 +48,7 @@ namespace Wox.Plugin.Clipboard
                         return false;
                     }
                 }
-            }).Reverse());
+            });
             return results;
         }
 
@@ -72,7 +72,7 @@ namespace Wox.Plugin.Clipboard
                     {
                         dataList.Remove(data.ToString());
                     }
-                    dataList.Add(data.ToString());
+                    dataList.Insert(0,data.ToString());
 
                     if (dataList.Count > MaxDataCount)
                     {
